@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import logoImg from '../../assets/Navbar.svg';
-import { Link } from 'react-router-dom';
 import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
