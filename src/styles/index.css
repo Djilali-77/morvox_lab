@@ -1,0 +1,30 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-navy: #001F5B;
+  --color-navy-light: #003380;
+  --color-navy-dark: #001233;
+  
+  --color-bronze: #D1B07A;
+  --color-bronze-dark: #9D774D;
+  --color-bronze-light: #E6CC98;
+
+  --font-sans: 'Montserrat', 'Inter', sans-serif;
+}
+
+@layer utilities {
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+}
+
+@keyframes blob {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
