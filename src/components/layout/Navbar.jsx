@@ -106,6 +106,7 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.href}
+                onClick={() => setIsOpen(false)} // <--- هادي هي العفسة لي زدناها!
                 className="block px-3 py-3 text-base font-medium text-navy dark:text-gray-300 hover:text-bronze dark:hover:text-bronze hover:bg-gray-50 dark:hover:bg-white/5 rounded-md"
               >
                 {link.name}
