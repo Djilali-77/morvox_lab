@@ -3,10 +3,28 @@ import { motion } from 'framer-motion';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import logoImg from '../../assets/Navbar.svg';
 import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
+  
+  const location = useLocation();
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isOpen) {
+        setIsOpen(false);
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isOpen]);
 
   useEffect(() => {
     if (isDark) {
@@ -16,12 +34,6 @@ const Navbar = () => {
     }
   }, [isDark]);
 
-  const navLinks = [
-    { name: 'Store', href: '/store' },
-    { name: 'Sur-mesure', href: '/custom' },
-    { name: 'Portfolio', href: '/portfolio' },
-    { name: 'Education', href: '/education' },
-  ];
 
   return (
     <nav className="fixed w-full z-50 bg-white/80 dark:bg-navy-dark/80 backdrop-blur-md border-b border-gray-100 dark:border-white/10 transition-colors duration-300">
