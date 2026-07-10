@@ -10,6 +10,13 @@ const Navbar = () => {
   
   const location = useLocation();
 
+  const navLinks = [
+    { name: 'Store', href: '/store' },
+    { name: 'Sur-mesure', href: '/custom' },
+    { name: 'Portfolio', href: '/portfolio' },
+    { name: 'Education', href: '/education' },
+  ];
+
   useEffect(() => {
     setIsOpen(false);
   }, [location]);
@@ -25,6 +32,7 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isOpen]);
 
+  // 3. الدارك مود
   useEffect(() => {
     if (isDark) {
       document.documentElement.classList.add('dark');
@@ -32,7 +40,6 @@ const Navbar = () => {
       document.documentElement.classList.remove('dark');
     }
   }, [isDark]);
-
 
   return (
     <nav className="fixed w-full z-50 bg-white/80 dark:bg-navy-dark/80 backdrop-blur-md border-b border-gray-100 dark:border-white/10 transition-colors duration-300">
@@ -117,7 +124,7 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.href}
-                onClick={() => setIsOpen(false)} // <--- هادي هي العفسة لي زدناها!
+                onClick={() => setIsOpen(false)}
                 className="block px-3 py-3 text-base font-medium text-navy dark:text-gray-300 hover:text-bronze dark:hover:text-bronze hover:bg-gray-50 dark:hover:bg-white/5 rounded-md"
               >
                 {link.name}
