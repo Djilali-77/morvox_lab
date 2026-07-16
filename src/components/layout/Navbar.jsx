@@ -15,6 +15,7 @@ const Navbar = () => {
     { name: 'Sur-mesure', href: '/custom' },
     { name: 'Portfolio', href: '/portfolio' },
     { name: 'Education', href: '/education' },
+    { name: 'Porte-clé 3D', href: '/custom-3d' }
   ];
 
   useEffect(() => {

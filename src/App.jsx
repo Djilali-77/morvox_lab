@@ -7,6 +7,7 @@ import CustomOrders from './pages/CustomOrders';
 import AdminDashboard from './pages/AdminDashboard';
 import WhatsAppButton from './components/ui/WhatsAppButton';
 import Portfolio from './pages/Portfolio';
+import ProductCustomizer from './components/ProductCustomizer';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/custom" element={<CustomOrders />} />
             <Route path="/admin" element={<AdminDashboard />} /> 
             <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/custom-3d" element={<ProductCustomizer />} />
           </Routes>
         </main>
         
