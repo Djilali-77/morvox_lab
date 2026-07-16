@@ -47,17 +47,21 @@ const ProductCustomizer = () => {
   const [color, setColor] = useState('#cd7f32');
 
   const handleOrder = () => {
-  const phoneNumber = "213561119298"; 
-  
-  const message = `Salam, je veux commander un Porte-clé 3D personnalisé :
-- Texte : ${text}
-- Couleur : ${color}
-- Prix estimé : 1500 DA`;
+    const randomCode = 'MRV-' + Math.random().toString(36).substring(2, 6).toUpperCase();
+    const phoneNumber = "213561119298"; 
+    
+    const message = `Salam, je veux commander un Porte-clé 3D personnalisé :
+    - Texte : ${text}
+    - Couleur : ${color}
+    - Prix estimé : 1500 DA
+    - Code de suivi : ${randomCode}`;
 
-  const encodedMessage = encodeURIComponent(message);
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+    
+    alert(`Commande préparée ! Votre code de suivi est : ${randomCode}.\n\nVous allez être redirigé vers WhatsApp pour confirmer...`);
   
-  window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
-
+    window.location.href = whatsappUrl;    
 };
 
 

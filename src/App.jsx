@@ -5,6 +5,7 @@ import Store from './pages/Store';
 import Education from './pages/Education';
 import CustomOrders from './pages/CustomOrders';
 import AdminDashboard from './pages/AdminDashboard';
+import OrderTracking from './pages/OrderTracking';
 import WhatsAppButton from './components/ui/WhatsAppButton';
 import Portfolio from './pages/Portfolio';
 import ProductCustomizer from './components/ProductCustomizer';
@@ -23,6 +24,7 @@ function App() {
             <Route path="/admin" element={<AdminDashboard />} /> 
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/custom-3d" element={<ProductCustomizer />} />
+            <Route path="/oreder_track" element={<OrderTracking />} />
           </Routes>
         </main>
         
