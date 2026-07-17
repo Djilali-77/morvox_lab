@@ -9,9 +9,7 @@ const KeychainModel = ({ text, color }) => {
 
   return (
     <group>
-
-        {/* postion (x, y, z) : x->droit ,y->gouf ta7t ,z->godam arrier */}
-        {/* rotation (x, y, z) : x->godam ,y->droit ta7t ,z->bel janb */}
+        {/* الموديل الرئيسي تاع البورت-كليه */}
         <primitive 
           object={scene} 
           scale={50} 
@@ -19,10 +17,8 @@ const KeychainModel = ({ text, color }) => {
           rotation={[Math.PI + 1.6, 0, 0]}
         />
 
-        <group 
-            position={[0.3, 0, 0.25]}
-            rotation={[0, 0, 0]}
-        >         
+        {/* النص الرئيسي المتحرك (الاسم) */}
+        <group position={[0.3, 0, 0.25]} rotation={[0, 0, 0]}>         
             <Center key={text}>
                 <Text3D
                 font={fontUrl}
@@ -43,7 +39,28 @@ const KeychainModel = ({ text, color }) => {
                 />
                 </Text3D>
             </Center>
+        </group>
 
+        {/* الطبعة الإضافية DZ */}
+        <group position={[-1.5, 0, 0.25]} rotation={[0, 0, 0]}>
+            <Text3D
+                font={fontUrl}
+                size={0.2}
+                height={0.1}
+                curveSegments={12}
+                bevelEnabled
+                bevelThickness={0.005}
+                bevelSize={0.005}
+                bevelOffset={0}
+                bevelSegments={3}
+            >
+                DZ
+                <meshStandardMaterial 
+                    color={color} 
+                    roughness={0.3} 
+                    metalness={0.2} 
+                />
+            </Text3D>
         </group>
     </group>
   );
@@ -64,13 +81,14 @@ const Studio3D = () => {
     - Code de suivi : ${randomCode}`;
 
     const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    
+    window.open(whatsappUrl, '_blank');
     
     alert(`Commande préparée ! Votre code de suivi est : ${randomCode}.\n\nVous allez être redirigé vers WhatsApp pour confirmer...`);
   
     window.location.href = whatsappUrl;    
-};
-
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-navy pt-24 pb-12 px-4 sm:px-6 lg:px-8">
@@ -81,6 +99,10 @@ const Studio3D = () => {
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-300">
             Tapez votre nom, choisissez votre couleur et visualisez le résultat en temps réel !
+          </p>
+          {/* رسالة تبان غير في التليفون باش تنصحهم بالميكرو */}
+          <p className="md:hidden mt-4 text-sm font-medium text-bronze bg-bronze/10 py-2 px-4 rounded-lg inline-block">
+            💻 Pour une meilleure expérience, utilisez un ordinateur.
           </p>
         </div>
 
@@ -143,7 +165,7 @@ const Studio3D = () => {
             </div>
           </div>
 
-          <div className="w-full lg:w-2/3 min-h-[500px] lg:min-h-[600px] bg-gray-100 dark:bg-[#0f172a] relative cursor-grab active:cursor-grabbing rounded-b-2xl lg:rounded-bl-none lg:rounded-r-2xl overflow-hidden">
+          <div className="w-full lg:w-2/3 h-[350px] sm:h-[450px] lg:min-h-[600px] bg-gray-100 dark:bg-[#0f172a] relative cursor-grab active:cursor-grabbing rounded-b-2xl lg:rounded-bl-none lg:rounded-r-2xl overflow-hidden">
             <div className="absolute top-4 left-4 bg-white/80 dark:bg-black/50 px-3 py-1 rounded-full text-xs font-medium text-gray-600 dark:text-gray-300 backdrop-blur-sm z-10 pointer-events-none">
               🖱️ Faites glisser pour tourner
             </div>
@@ -160,7 +182,13 @@ const Studio3D = () => {
                 <directionalLight position={[10, 10, 10]} intensity={1.5} />
                 <directionalLight position={[-10, -10, -10]} intensity={0.5} />
 
-                <OrbitControls enableZoom={true} />
+                {/* تريڨل باش ما يحصلش في السكرول تاع التليفون ويدور وحدو */}
+                <OrbitControls 
+                  enableZoom={false} 
+                  autoRotate={true} 
+                  autoRotateSpeed={2}
+                  enablePan={false}
+                />
 
                 <KeychainModel text={text} color={color} />
                 
