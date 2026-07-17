@@ -40,28 +40,6 @@ const KeychainModel = ({ text, color }) => {
                 </Text3D>
             </Center>
         </group>
-
-        {/* الطبعة الإضافية DZ */}
-        <group position={[-1.5, 0, 0.25]} rotation={[0, 0, 0]}>
-            <Text3D
-                font={fontUrl}
-                size={0.2}
-                height={0.1}
-                curveSegments={12}
-                bevelEnabled
-                bevelThickness={0.005}
-                bevelSize={0.005}
-                bevelOffset={0}
-                bevelSegments={3}
-            >
-                DZ
-                <meshStandardMaterial 
-                    color={color} 
-                    roughness={0.3} 
-                    metalness={0.2} 
-                />
-            </Text3D>
-        </group>
     </group>
   );
 };
@@ -100,7 +78,6 @@ const Studio3D = () => {
           <p className="text-lg text-gray-600 dark:text-gray-300">
             Tapez votre nom, choisissez votre couleur et visualisez le résultat en temps réel !
           </p>
-          {/* رسالة تبان غير في التليفون باش تنصحهم بالميكرو */}
           <p className="md:hidden mt-4 text-sm font-medium text-bronze bg-bronze/10 py-2 px-4 rounded-lg inline-block">
             💻 Pour une meilleure expérience, utilisez un ordinateur.
           </p>
@@ -182,7 +159,6 @@ const Studio3D = () => {
                 <directionalLight position={[10, 10, 10]} intensity={1.5} />
                 <directionalLight position={[-10, -10, -10]} intensity={0.5} />
 
-                {/* تريڨل باش ما يحصلش في السكرول تاع التليفون ويدور وحدو */}
                 <OrbitControls 
                   enableZoom={false} 
                   autoRotate={true} 
