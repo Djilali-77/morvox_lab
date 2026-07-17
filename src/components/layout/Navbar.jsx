@@ -11,11 +11,11 @@ const Navbar = () => {
   const location = useLocation();
 
   const navLinks = [
-    { name: 'Store', href: '/store' },
+    { name: 'Boutique', href: '/boutique' },
     { name: 'Sur-mesure', href: '/custom' },
-    { name: 'Portfolio', href: '/portfolio' },
-    { name: 'Education', href: '/education' },
-    { name: 'Porte-clé 3D', href: '/custom-3d' }
+    { name: 'Studio 3D', href: '/studio3d' }, 
+    { name: 'Formations', href: '/formation'},
+    { name: 'Suivi', href: '/suivi' },
   ];
 
   useEffect(() => {

@@ -9,13 +9,20 @@ const KeychainModel = ({ text, color }) => {
 
   return (
     <group>
-      
-        <primitive object={scene} scale={50} position={[0, 0, 0]} />
+
+        {/* postion (x, y, z) : x->droit ,y->gouf ta7t ,z->godam arrier */}
+        {/* rotation (x, y, z) : x->godam ,y->droit ta7t ,z->bel janb */}
+        <primitive 
+          object={scene} 
+          scale={50} 
+          position={[0, 0, 0.1]} 
+          rotation={[Math.PI + 1.6, 0, 0]}
+        />
+
         <group 
-            position={[0.2, -0.2, 0]}
-            rotation={[Math.PI / 2, 0, 0]}
-        > 
-        
+            position={[0.3, 0, 0.25]}
+            rotation={[0, 0, 0]}
+        >         
             <Center key={text}>
                 <Text3D
                 font={fontUrl}
@@ -42,7 +49,7 @@ const KeychainModel = ({ text, color }) => {
   );
 };
 
-const ProductCustomizer = () => {
+const Studio3D = () => {
   const [text, setText] = useState('MORVOX');
   const [color, setColor] = useState('#cd7f32');
 
@@ -167,4 +174,4 @@ const ProductCustomizer = () => {
   );
 };
 
-export default ProductCustomizer;
+export default Studio3D;

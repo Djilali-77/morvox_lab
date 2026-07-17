@@ -1,10 +1,15 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Upload, Send, CheckCircle2, Cpu, ChevronDown } from 'lucide-react';
+import { Upload, Send, CheckCircle2, ChevronDown, Clock, Sparkles } from 'lucide-react';
 import { supabase } from '../config/supabase';
 import emailjs from '@emailjs/browser';
 
-const CustomOrders = () => {
+const Custom = () => {
+  // 🔥 مفتاح السحر هنا:
+  // خليه false باش تتبلع وتخرج واجهة Coming Soon فخمة.
+  // نهار تحب تفتحها لطلبات الزبائن، ردها true برك!
+  const isAvailable = false;
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -34,14 +39,13 @@ const CustomOrders = () => {
     try {
       let fileUrl = 'No file attached';
 
-      // 1. Upload File to Supabase (if exists)
       if (formData.file) {
         const file = formData.file;
         const fileExt = file.name.split('.').pop();
         const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
         const filePath = `orders/${fileName}`;
 
-        const { data: uploadData, error: uploadError } = await supabase.storage
+        const { error: uploadError } = await supabase.storage
           .from('3d_models')
           .upload(filePath, file);
 
@@ -54,7 +58,6 @@ const CustomOrders = () => {
         fileUrl = publicUrlData.publicUrl;
       }
 
-      // 2. Insert into Supabase Database
       const { error: insertError } = await supabase
         .from('custom_orders')
         .insert([
@@ -71,7 +74,6 @@ const CustomOrders = () => {
 
       if (insertError) throw insertError;
 
-      // 3. Send Email Notification via EmailJS
       const serviceId = 'service_tdoacwe'; 
       const templateId = 'template_a5abfo8';
       const publicKey = 'iMTsr1ltQSyGtN9Fk';
@@ -87,8 +89,6 @@ const CustomOrders = () => {
       };
 
       await emailjs.send(serviceId, templateId, templateParams, publicKey);
-
-      // 4. Show Success Screen
       setSubmitted(true);
       
     } catch (error) {
@@ -99,6 +99,46 @@ const CustomOrders = () => {
     }
   };
 
+  // إذا كانت false، افيشي واجهة Coming Soon فخمة لـ Sur-mesure
+  if (!isAvailable) {
+    return (
+      <div className="min-h-[80vh] flex items-center justify-center bg-gray-50 dark:bg-navy-dark px-4 py-20">
+        <div className="text-center max-w-xl mx-auto bg-white dark:bg-navy/40 p-10 rounded-3xl border border-gray-100 dark:border-white/5 shadow-xl">
+          
+          <motion.div 
+            initial={{ scale: 0.5, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="w-20 h-20 bg-bronze/10 text-bronze rounded-2xl flex items-center justify-center mx-auto mb-6 text-3xl"
+          >
+            <Clock className="w-10 h-10 animate-pulse" />
+          </motion.div>
+
+          <span className="inline-flex items-center gap-1.5 py-1.5 px-4 rounded-full bg-bronze/10 text-bronze font-semibold text-xs mb-4 uppercase tracking-wider">
+            <Sparkles size={14} /> Bientôt Disponible
+          </span>
+
+          <h1 className="text-3xl md:text-4xl font-extrabold text-navy dark:text-white mb-4">
+            Service Sur-Mesure en Cours de Préparation
+          </h1>
+
+          <p className="text-gray-600 dark:text-gray-400 text-base mb-8">
+            نحن نعمل على تجهيز ورشة التصنيع الخاصة بالطلبات الخاصة والنماذج الهندسية. ترقبونا قريباً لاستقبال مشاريعكم!
+          </p>
+
+          <a 
+            href="/" 
+            className="inline-block bg-bronze hover:bg-bronze-light text-white px-8 py-3 rounded-xl font-bold shadow-md transition-colors"
+          >
+            Retour à l'accueil
+          </a>
+
+        </div>
+      </div>
+    );
+  }
+
+  // وإذا كانت true، افيشي الفอร์م (Form) الحقيقي باش الناس تكموندي عادي
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-navy-dark pt-10 pb-20 transition-colors duration-300">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -264,4 +304,4 @@ const CustomOrders = () => {
   );
 };
 
-export default CustomOrders;
+export default Custom;

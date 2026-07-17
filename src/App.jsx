@@ -1,14 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Hero from './components/ui/Hero';
-import Store from './pages/Store';
-import Education from './pages/Education';
-import CustomOrders from './pages/CustomOrders';
+import Boutique from './pages/Boutique';
+import Formation from './pages/Formation';
+import Custom from './pages/Custom';
 import AdminDashboard from './pages/AdminDashboard';
-import OrderTracking from './pages/OrderTracking';
+import Suivi from './pages/Suivi';
 import WhatsAppButton from './components/ui/WhatsAppButton';
 import Portfolio from './pages/Portfolio';
-import ProductCustomizer from './components/ProductCustomizer';
+import Studio3D from './components/Studio3D';
 
 function App() {
   return (
@@ -18,13 +18,13 @@ function App() {
         <main className="pt-20">
           <Routes>
             <Route path="/" element={<Hero />} />
-            <Route path="/store" element={<Store />} />
-            <Route path="/education" element={<Education />} />
-            <Route path="/custom" element={<CustomOrders />} />
+            <Route path="/boutique" element={<Boutique />} />
+            <Route path="/formation" element={<Formation />} />
+            <Route path="/custom" element={<Custom />} />
             <Route path="/admin" element={<AdminDashboard />} /> 
             <Route path="/portfolio" element={<Portfolio />} />
-            <Route path="/custom-3d" element={<ProductCustomizer />} />
-            <Route path="/oreder_track" element={<OrderTracking />} />
+            <Route path="/studio3d" element={<Studio3D />} />
+            <Route path="/suivi" element={<Suivi />} />
           </Routes>
         </main>
         

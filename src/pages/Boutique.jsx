@@ -23,7 +23,7 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
 };
 
-const Store = () => {
+const Boutique = () => {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-navy-dark pt-10 pb-20 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -96,4 +96,4 @@ const Store = () => {
   );
 };
 
-export default Store;
+export default Boutique;

@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
-const OrderTracking = () => {
+const Suivi = () => {
   const [trackingCode, setTrackingCode] = useState('');
   const [orderStatus, setOrderStatus] = useState(null);
   const [error, setError] = useState('');
 
-  // هادو هما المراحل نتاع الطباعة
   const steps = [
     { id: 1, name: 'Commande Reçue', icon: '📝' },
     { id: 2, name: 'En cours d\'impression 3D', icon: '🖨️' },
@@ -14,7 +13,6 @@ const OrderTracking = () => {
     { id: 4, name: 'En route pour la livraison', icon: '🚚' },
   ];
 
-  // هادي فنكشن وهمية دركا باش نتيستيو (من بعد نربطوها بالداتابيز)
   const handleTrack = (e) => {
     e.preventDefault();
     if (!trackingCode.trim()) {
@@ -22,10 +20,8 @@ const OrderTracking = () => {
       return;
     }
     
-    // إذا الكود يبدا بـ MRV، نعطولو مرحلة عشوائية باش يتيستي
     if (trackingCode.toUpperCase().startsWith('MRV-')) {
       setError('');
-      // هنا نورمالمون نجيبو الحالة من الداتابيز، دركا درناها مرحلة 2 (Impression) كمثال
       setOrderStatus(2); 
     } else {
       setOrderStatus(null);
@@ -46,7 +42,6 @@ const OrderTracking = () => {
         </div>
 
         <div className="bg-white dark:bg-navy-dark rounded-2xl shadow-xl p-6 md:p-10 border border-gray-100 dark:border-white/10">
-          {/* فورم البحث */}
           <form onSubmit={handleTrack} className="flex flex-col sm:flex-row gap-4 mb-10">
             <input
               type="text"
@@ -65,7 +60,6 @@ const OrderTracking = () => {
 
           {error && <p className="text-red-500 text-center mb-6">{error}</p>}
 
-          {/* خط التتبع (Timeline) يبان غير كي يكون كاين orderStatus */}
           {orderStatus && (
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -120,4 +114,4 @@ const OrderTracking = () => {
   );
 };
 
-export default OrderTracking;
+export default Suivi;
