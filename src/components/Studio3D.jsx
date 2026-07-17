@@ -160,7 +160,7 @@ const Studio3D = () => {
                 <directionalLight position={[-10, -10, -10]} intensity={0.5} />
 
                 <OrbitControls 
-                  enableZoom={false} 
+                  enableZoom={true} 
                   autoRotate={true} 
                   autoRotateSpeed={2}
                   enablePan={false}
