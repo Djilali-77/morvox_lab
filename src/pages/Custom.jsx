@@ -5,9 +5,6 @@ import { supabase } from '../config/supabase';
 import emailjs from '@emailjs/browser';
 
 const Custom = () => {
-  // 🔥 مفتاح السحر هنا:
-  // خليه false باش تتبلع وتخرج واجهة Coming Soon فخمة.
-  // نهار تحب تفتحها لطلبات الزبائن، ردها true برك!
   const isAvailable = false;
 
   const [formData, setFormData] = useState({
@@ -99,7 +96,6 @@ const Custom = () => {
     }
   };
 
-  // إذا كانت false، افيشي واجهة Coming Soon فخمة لـ Sur-mesure
   if (!isAvailable) {
     return (
       <div className="min-h-[80vh] flex items-center justify-center bg-gray-50 dark:bg-navy-dark px-4 py-20">
@@ -138,7 +134,6 @@ const Custom = () => {
     );
   }
 
-  // وإذا كانت true، افيشي الفอร์م (Form) الحقيقي باش الناس تكموندي عادي
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-navy-dark pt-10 pb-20 transition-colors duration-300">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

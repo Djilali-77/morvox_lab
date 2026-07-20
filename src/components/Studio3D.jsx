@@ -3,13 +3,14 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Text3D, Center, Html, useGLTF } from '@react-three/drei';
 import { motion } from 'framer-motion';
 
-const KeychainModel = ({ text, color }) => {
-  const { scene } = useGLTF('/keychain.glb'); 
+const KeychainModel = ({ text, smallText, color }) => {
+  // Hna dir l-fichier dyalak jdid li fih l-vides
+  const { scene } = useGLTF('/key.glb'); 
   const fontUrl = "https://unpkg.com/three@0.150.1/examples/fonts/helvetiker_regular.typeface.json";
 
   return (
     <group>
-        {/* الموديل الرئيسي تاع البورت-كليه */}
+        {/* L-mudal l-asasi */}
         <primitive 
           object={scene} 
           scale={50} 
@@ -20,23 +21,42 @@ const KeychainModel = ({ text, color }) => {
         {/* النص الرئيسي المتحرك (الاسم) */}
         <group position={[0.3, 0, 0.25]} rotation={[0, 0, 0]}>         
             <Center key={text}>
-                <Text3D
-                font={fontUrl}
-                size={text.length > 7 ? 0.3 : 0.4}
-                height={0.1}
-                curveSegments={12}
-                bevelEnabled
-                bevelThickness={0.01}
-                bevelSize={0.01}
-                bevelOffset={0}
-                bevelSegments={5}
-                >
+                <Text3D 
+                  font={fontUrl} 
+                  size={text.length > 7 ? 0.3 : 0.4} 
+                  height={0.1} 
+                  curveSegments={12} 
+                  bevelEnabled 
+                  bevelThickness={0.01} 
+                  bevelSize={0.01} 
+                  bevelOffset={0} 
+                  bevelSegments={5}
+                  >
                 {text || '-'}
-                <meshStandardMaterial 
-                    color={color} 
-                    roughness={0.4} 
-                    metalness={0.1} 
-                />
+                <meshStandardMaterial color={color} roughness={0.4} metalness={0.1} />
+                </Text3D>
+            </Center>
+        </group>
+
+        {/* 🟢 HADA WESH TZID: النص الصغير (DZ) 🟢 */}
+        {/* Nta riguel l-position 3la 7sab l-fichier 3D jdid dyalak */}
+        <group position={[-1.7, -0.2, 0.27]} rotation={[0, 0, 0]}>         
+            <Center key={smallText}>
+                <Text3D 
+                  font={fontUrl} 
+                  size={0.15} 
+                  height={0.1} 
+                  curveSegments={12} 
+                  bevelEnabled 
+                  bevelThickness={0.01} 
+                  bevelSize={0.01} 
+                  bevelOffset={0} 
+                  bevelSegments={5}
+                  letterSpacing={0.03}
+                  >
+                {smallText || 'DZ'}
+                {/* taddi nafs l-couleur */}
+                <meshStandardMaterial color={color} roughness={0.4} metalness={0.1} />
                 </Text3D>
             </Center>
         </group>
@@ -46,17 +66,22 @@ const KeychainModel = ({ text, color }) => {
 
 const Studio3D = () => {
   const [text, setText] = useState('MORVOX');
+  const [smallText, setSmallText] = useState('DZ');
   const [color, setColor] = useState('#cd7f32');
 
+  
   const handleOrder = () => {
     const randomCode = 'MRV-' + Math.random().toString(36).substring(2, 6).toUpperCase();
     const phoneNumber = "213561119298"; 
     
     const message = `Salam, je veux commander un Porte-clé 3D personnalisé :
     - Texte : ${text}
+    - Petit Texte : ${smallText}
     - Couleur : ${color}
     - Prix estimé : 1500 DA
     - Code de suivi : ${randomCode}`;
+
+    
 
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
@@ -100,6 +125,21 @@ const Studio3D = () => {
               />
             </div>
 
+            {/* 🟢 Zid had l-bloc ta3 l-kûtba s-sghira 🟢 */}
+            <div>
+              <label className="block text-sm font-medium text-navy dark:text-white mb-2">
+                Petit Texte (Max 3 lettres)
+              </label>
+              <input
+                type="text"
+                value={smallText}
+                onChange={(e) => setSmallText(e.target.value.toUpperCase())}
+                maxLength={3} // 🟢 Max 3 lettres kima talabti 🟢
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-navy text-navy dark:text-white focus:ring-2 focus:ring-bronze focus:border-transparent transition-colors outline-none"
+                placeholder="Ex: DZ"
+              />
+            </div>
+
             <div>
               <label className="block text-sm font-medium text-navy dark:text-white mb-3">
                 Couleur du texte
@@ -125,6 +165,7 @@ const Studio3D = () => {
                 />
               </div>
             </div>
+            
 
             <div className="mt-auto pt-8 border-t border-gray-100 dark:border-white/10">
               <div className="flex justify-between items-center mb-6">
@@ -161,13 +202,13 @@ const Studio3D = () => {
 
                 <OrbitControls 
                   enableZoom={true} 
-                  autoRotate={true} 
+                  autoRotate={false} 
                   autoRotateSpeed={2}
                   enablePan={false}
                 />
 
-                <KeychainModel text={text} color={color} />
-                
+                <KeychainModel text={text} smallText={smallText} color={color} />
+
               </Suspense>
             </Canvas>
           </div>
