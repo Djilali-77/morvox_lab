@@ -33,7 +33,6 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isOpen]);
 
-  // 3. الدارك مود
   useEffect(() => {
     if (isDark) {
       document.documentElement.classList.add('dark');
@@ -53,9 +52,9 @@ const Navbar = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
-                className="flex flex-row items-center gap-3 text-2xl font-bold text-navy dark:text-white tracking-tight"
+                className="flex flex-row items-center text-2xl font-bold text-navy dark:text-white tracking-tight"
               >
-                <img src={logoImg} alt="Morvox Lab Logo" className="h-10 w-auto object-contain shrink-0" />
+                <img src={logoImg} alt="Morvox Lab Logo" className="h-10 w-auto -mr-5 object-contain shrink-0" />
                 <span className="hidden sm:block whitespace-nowrap">MORVOX <span className="text-bronze">LAB</span></span>
               </motion.div>
             </Link>
