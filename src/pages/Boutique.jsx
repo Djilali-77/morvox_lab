@@ -5,7 +5,7 @@ import { ShoppingCart, X, Trash2, ShoppingBag, CheckCircle2 } from 'lucide-react
 const products = [
   { id: 1, name: "Key Plate Holder", price: 1490, category: "Accessories", image: "/key.png" },
   { id: 2, name: "Desk Organizer", price: 3490, category: "Accessories", image: "/Desk Organizer.png" },
-  { id: 3, name: "Handle Carrier", price: 1190, category: "Parts", image: "/Handle Carrier.step.png" },
+  { id: 3, name: "Handle Carrier", price: 1190, category: "Parts", image: "/handle.png" },
   { id: 4, name: "Headphone Stand", price: 2790, category: "Accessories", image: "/Headphone stand.png" },
   { id: 5, name: "Card Organizer", price: 1390, category: "Accessories", image: "/Crad organizer.png" }
 ];
