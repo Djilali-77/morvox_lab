@@ -152,12 +152,6 @@ const Studio3D = () => {
                   title="Bronze"
                 />
                 <button
-                  onClick={() => setColor('#1a202c')}
-                  className={`w-12 h-12 rounded-full shadow-md transition-transform hover:scale-110 ${color === '#1a202c' ? 'ring-4 ring-offset-2 ring-navy dark:ring-offset-navy-dark' : ''}`}
-                  style={{ backgroundColor: '#1a202c' }}
-                  title="Navy"
-                />
-                <button
                   onClick={() => setColor('#ffffff')}
                   className={`w-12 h-12 rounded-full shadow-md transition-transform hover:scale-110 border border-gray-200 ${color === '#ffffff' ? 'ring-4 ring-offset-2 ring-gray-400 dark:ring-offset-navy-dark' : ''}`}
                   style={{ backgroundColor: '#ffffff' }}
